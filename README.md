@@ -52,24 +52,24 @@ The system includes five predefined user personas with different interests:
 ## File Structure
 
 ai-newsletter-generator/
-│
+
 ├── .streamlit/
 │ └── config.toml # Streamlit configuration
-│
+
 ├── app.py # Main Streamlit application
-|
+
 ├── article_categorizer.py # Article categorization using NLP
-|
+
 ├── article_summarizer.py # Article summarization
-|
+
 ├── newsletter_generator.py # Newsletter generation
-|
+
 ├── rss_parser.py # RSS feed parser
-|
+
 ├── user_preferences.py # User personas
-|
+
 ├── utils.py # Utility functions
-|
+
 └── requirements.txt # Dependencies
 
 
