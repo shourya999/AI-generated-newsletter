@@ -53,7 +53,9 @@ The system includes five predefined user personas with different interests:
 
 ai-newsletter-generator/
 
-├── .streamlit/
+├── .streamlit/                           
+
+
 └── config.toml # Streamlit configuration
 
 ├── app.py # Main Streamlit application
