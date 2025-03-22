@@ -17,12 +17,12 @@ Built using: 🐍 Python | ⚡ Streamlit | 📡 RSS Feeds | 🧠 NLP (NLTK, news
 
 ## Features
 
-> Real-time News Fetching – Retrieves the latest articles from sources like BBC, TechCrunch, Bloomberg, ESPN, NASA.
-> NLP-Based Categorization – Assigns articles to Technology, Business, Science, Sports, Entertainment, etc.
-> AI-Powered Summarization – Uses newspaper3k & NLTK for concise summaries.
-> Personalized Filtering – Matches articles with user-specific interests.
-> Streamlit UI – Interactive web-based interface for easy access.
-> Automated Markdown Newsletter – Well-formatted, easy-to-read news summaries.
+_ Real-time News Fetching – Retrieves the latest articles from sources like BBC, TechCrunch, Bloomberg, ESPN, NASA.
+- NLP-Based Categorization – Assigns articles to Technology, Business, Science, Sports, Entertainment, etc.
+- AI-Powered Summarization – Uses newspaper3k & NLTK for concise summaries.
+- Personalized Filtering – Matches articles with user-specific interests.
+- Streamlit UI – Interactive web-based interface for easy access.
+- Automated Markdown Newsletter – Well-formatted, easy-to-read news summaries.
 
 
 ## User Personas
