@@ -17,7 +17,7 @@ Built using: 🐍 Python | ⚡ Streamlit | 📡 RSS Feeds | 🧠 NLP (NLTK, news
 
 ## Features
 
-_ Real-time News Fetching – Retrieves the latest articles from sources like BBC, TechCrunch, Bloomberg, ESPN, NASA.
+Real-time News Fetching – Retrieves the latest articles from sources like BBC, TechCrunch, Bloomberg, ESPN, NASA.
 - NLP-Based Categorization – Assigns articles to Technology, Business, Science, Sports, Entertainment, etc.
 - AI-Powered Summarization – Uses newspaper3k & NLTK for concise summaries.
 - Personalized Filtering – Matches articles with user-specific interests.
