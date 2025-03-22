@@ -9,13 +9,16 @@ USER_PERSONAS = {
             "Cybersecurity",
             "Blockchain",
             "Startups",
-            "Programming"
+            "Programming",
+            "Technology",
+            "Software Development"
         ],
         "sources": [
             "TechCrunch",
-            "Wired Tech",
+            "Wired",
             "Ars Technica",
-            "MIT Tech Review"
+            "MIT Tech Review",
+            "The Verge"
         ]
     },
     "Priya Sharma": {
@@ -27,13 +30,16 @@ USER_PERSONAS = {
             "Startups",
             "Fintech",
             "Cryptocurrency",
-            "Economics"
+            "Economics",
+            "Business Strategy",
+            "Venture Capital"
         ],
         "sources": [
             "Bloomberg",
             "Financial Times",
             "Forbes",
-            "CoinDesk"
+            "CoinDesk",
+            "The Economist"
         ]
     },
     "Marco Rossi": {
@@ -42,16 +48,19 @@ USER_PERSONAS = {
         "location": "Italy",
         "interests": [
             "Football",
+            "Soccer",
             "F1",
             "NBA",
-            "Olympic sports",
-            "Esports"
+            "Olympics",
+            "Sports",
+            "Racing"
         ],
         "sources": [
             "ESPN",
             "BBC Sport",
-            "Sky Sports F1",
-            "The Athletic"
+            "Sky Sports",
+            "The Athletic",
+            "Gazzetta dello Sport"
         ]
     },
     "Lisa Thompson": {
@@ -60,16 +69,23 @@ USER_PERSONAS = {
         "location": "UK",
         "interests": [
             "Movies",
-            "Celebrity news",
+            "Cinema",
+            "Film",
             "TV shows",
             "Music",
-            "Books"
+            "Entertainment",
+            "Celebrity",
+            "Hollywood",
+            "Books",
+            "Theater"
         ],
         "sources": [
             "Variety",
             "Rolling Stone",
             "Billboard",
-            "Hollywood Reporter"
+            "Hollywood Reporter",
+            "Entertainment Weekly",
+            "Cinema Blend"
         ]
     },
     "David Martinez": {
@@ -81,13 +97,16 @@ USER_PERSONAS = {
             "AI",
             "Biotech",
             "Physics",
-            "Renewable energy"
+            "Renewable energy",
+            "Climate science",
+            "Science"
         ],
         "sources": [
             "NASA",
             "Science Daily",
             "Nature",
-            "Ars Technica Science"
+            "Ars Technica Science",
+            "Scientific American"
         ]
     }
 }
