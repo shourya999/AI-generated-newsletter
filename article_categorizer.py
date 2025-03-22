@@ -1,92 +1,52 @@
 import re
 import string
-from collections import Counter
-
-# Core categories for article classification
+# Core categories for article classification with enhanced entertainment keywords
 CATEGORIES = {
     "Technology": [
-        "ai", "artificial intelligence", "machine learning", "deep learning",
-        "technology", "software", "hardware", "app", "application", "computer", 
-        "computing", "code", "programming", "developer", "tech", "algorithm",
-        "data science", "robotics", "automation", "cyber", "digital",
-        "gadget", "internet", "web", "mobile", "smartphone", "app",
-        "database", "cloud", "server", "network", "iot", "startup",
-        "innovation", "blockchain", "cryptocurrency", "bitcoin", "ethereum",
-        "vr", "ar", "virtual reality", "augmented reality"
+        "technology", "tech", "software", "hardware", "app", "computer", "programming",
+        "ai", "artificial intelligence", "machine learning", "data", "cyber", "digital",
+        "internet", "web", "mobile", "device", "smartphone", "code", "blockchain", "bitcoin"
     ],
     "Business": [
-        "business", "company", "corporate", "industry", "market", "economy", 
-        "economic", "finance", "financial", "stock", "investment", "investor",
-        "trade", "trading", "commerce", "commercial", "venture", "enterprise",
-        "entrepreneur", "startup", "corporation", "firm", "merger", "acquisition",
-        "ipo", "revenue", "profit", "earnings", "quarterly", "fiscal", "ceo",
-        "executive", "management", "strategy", "growth", "expansion"
+        "business", "company", "corporate", "market", "economy", "finance", "stock",
+        "investment", "trade", "startup", "venture", "entrepreneur", "industry",
+        "retail", "revenue", "profit", "growth", "commercial", "enterprise", "consumer"
     ],
     "Politics": [
-        "politics", "government", "election", "campaign", "vote", "voter", 
-        "political", "policy", "law", "regulation", "senate", "congress",
-        "parliament", "democrat", "republican", "conservative", "liberal",
-        "progressive", "politician", "president", "minister", "governor",
-        "mayor", "legislation", "bill", "act", "constitution", "court",
-        "justice", "supreme court", "ruling", "diplomacy", "diplomatic",
-        "international relations", "foreign policy", "domestic policy"
+        "politics", "government", "election", "vote", "political", "policy", 
+        "congress", "senate", "president", "law", "legislation", "court", "democrat",
+        "republican", "parliament", "minister", "diplomat", "foreign", "domestic"
     ],
     "Health": [
-        "health", "medical", "medicine", "doctor", "hospital", "patient", 
-        "disease", "condition", "treatment", "symptom", "diagnosis", "therapy",
-        "drug", "pharmaceutical", "biotech", "vaccine", "vaccination", "virus",
-        "epidemic", "pandemic", "public health", "healthcare", "wellness",
-        "mental health", "psychology", "psychiatry", "diet", "nutrition",
-        "exercise", "fitness", "obesity", "cancer", "diabetes", "research"
+        "health", "medical", "medicine", "doctor", "disease", "patient", "treatment",
+        "hospital", "drug", "virus", "vaccine", "diet", "fitness", "nutrition",
+        "mental health", "wellness", "therapy", "pandemic", "covid", "healthcare"
     ],
     "Science": [
-        "science", "scientific", "research", "study", "discovery", "laboratory", 
-        "experiment", "physics", "chemistry", "biology", "astronomy", "space",
-        "earth", "environment", "climate", "weather", "planet", "solar system",
-        "universe", "cosmos", "quantum", "particle", "molecule", "atom",
-        "gene", "genetic", "evolution", "species", "biodiversity", "ecosystem",
-        "sustainability", "renewable", "fossil", "carbon", "energy", "technology"
+        "science", "scientific", "research", "study", "discovery", "physics", "biology",
+        "chemistry", "space", "earth", "climate", "environment", "energy", "nasa",
+        "experiment", "laboratory", "gene", "species", "evolution", "astronomy"
     ],
     "Entertainment": [
-        "entertainment", "movie", "film", "cinema", "hollywood", "actor", "actress", 
-        "director", "producer", "television", "tv", "show", "series", "streaming",
-        "music", "song", "album", "artist", "band", "concert", "tour", "celebrity",
-        "star", "fame", "award", "oscar", "emmy", "grammy", "box office", "premiere",
-        "theater", "performance", "comedy", "drama", "genre", "release", "trailer"
+        "entertainment", "movie", "film", "cinema", "music", "celebrity", "hollywood", 
+        "actor", "actress", "director", "show", "television", "tv", "streaming", "concert",
+        "performance", "award", "drama", "comedy", "series", "theater", "book", "novel", 
+        "author", "star", "song", "album", "artist", "band", "release", "singer", "netflix",
+        "disney", "hbo", "amazon prime", "blockbuster", "box office", "hit", "billboard",
+        "magazine", "fashion", "style", "red carpet", "premiere", "trailer", "review",
+        "critic", "broadway", "musical", "festival"
     ],
     "Sports": [
-        "sport", "sports", "game", "match", "tournament", "championship", "league", 
-        "team", "player", "athlete", "coach", "manager", "football", "soccer",
-        "basketball", "baseball", "hockey", "tennis", "golf", "racing", "formula",
-        "olympics", "olympic", "medal", "competition", "score", "win", "victory",
-        "defeat", "loss", "stadium", "arena", "field", "court", "season", "fan"
-    ],
-    "Finance": [
-        "finance", "financial", "bank", "banking", "investment", "investor", 
-        "stock", "share", "market", "trading", "trader", "fund", "asset",
-        "portfolio", "wealth", "money", "currency", "exchange", "forex", "crypto",
-        "cryptocurrency", "bitcoin", "ethereum", "blockchain", "fintech", "loan",
-        "mortgage", "interest", "rate", "inflation", "deflation", "economy",
-        "economic", "recession", "growth", "gdp", "fiscal", "monetary", "policy"
-    ],
-    "Education": [
-        "education", "school", "university", "college", "student", "teacher", 
-        "professor", "academic", "learn", "learning", "study", "course", "degree",
-        "graduate", "undergraduate", "campus", "classroom", "lecture", "curriculum",
-        "exam", "test", "assessment", "research", "scholarship", "tuition", "student loan",
-        "discipline", "field", "knowledge", "skills", "training", "development"
-    ],
-    "Travel": [
-        "travel", "tourism", "tourist", "destination", "vacation", "holiday", 
-        "trip", "journey", "adventure", "explore", "tour", "flight", "airline",
-        "hotel", "resort", "accommodation", "booking", "reservation", "itinerary",
-        "cruise", "beach", "mountain", "city", "country", "international", "domestic",
-        "passport", "visa", "luggage", "backpack", "experience", "culture", "local"
+        "sport", "sports", "game", "match", "team", "player", "athlete", "championship",
+        "tournament", "football", "soccer", "basketball", "baseball", "tennis", "golf",
+        "olympics", "league", "coach", "stadium", "score", "win", "race", "racing"
     ]
 }
-
 def preprocess_text(text):
     """Preprocess text for categorization."""
+    if not text:
+        return ""
+        
     # Convert to lowercase
     text = text.lower()
     
@@ -97,14 +57,18 @@ def preprocess_text(text):
     text = re.sub(r'\s+', ' ', text).strip()
     
     return text
-
 def categorize_article(article):
     """Categorize a single article based on title and content."""
     # Create a copy of the article to avoid modifying the original
     article_copy = dict(article)
     
     # Get the text to analyze (title + content)
-    text = article_copy["title"] + " " + article_copy["content"]
+    title = article_copy.get("title", "")
+    content = article_copy.get("content", "")
+    text = title + " " + content
+    
+    # Use feed category as a fallback
+    feed_category = article_copy.get("feed_category", "")
     
     # Preprocess the text
     preprocessed_text = preprocess_text(text)
@@ -119,7 +83,7 @@ def categorize_article(article):
             keyword_count = preprocessed_text.count(keyword)
             
             # Add to score (with title matches weighted higher)
-            if article_copy["title"].lower().count(keyword) > 0:
+            if title and keyword in preprocess_text(title):
                 score += 5 * keyword_count  # Title match is weighted higher
             else:
                 score += keyword_count
@@ -128,13 +92,17 @@ def categorize_article(article):
             category_scores[category] = score
     
     # Also consider the feed category (if available)
-    if "feed_category" in article_copy and article_copy["feed_category"]:
-        feed_category = article_copy["feed_category"]
-        
+    if feed_category:
         # Look for matching or similar category
+        matching_category = None
         for category in category_scores.keys():
             if feed_category.lower() in category.lower() or category.lower() in feed_category.lower():
                 category_scores[category] += 3  # Boost the score
+                matching_category = category
+        
+        # If feed category doesn't match any existing category, add it as a separate category
+        if not matching_category and feed_category not in category_scores:
+            category_scores[feed_category] = 2  # Base score for feed category
     
     # Sort categories by score (descending)
     sorted_categories = sorted(category_scores.items(), key=lambda x: x[1], reverse=True)
@@ -144,20 +112,30 @@ def categorize_article(article):
     
     # If no categories found, add the feed category or "General"
     if not top_categories:
-        if "feed_category" in article_copy and article_copy["feed_category"]:
-            top_categories = [article_copy["feed_category"]]
+        if feed_category:
+            top_categories = [feed_category]
         else:
             top_categories = ["General"]
+    
+    # Ensure Entertainment gets priority for entertainment sources
+    if feed_category == "Entertainment" and "Entertainment" not in top_categories:
+        top_categories.insert(0, "Entertainment")
     
     # Limit to top 3 categories
     article_copy["categories"] = top_categories[:3]
     
     return article_copy
-
 def categorize_articles(articles):
     """Categorize all articles."""
     categorized = []
     for article in articles:
-        categorized_article = categorize_article(article)
-        categorized.append(categorized_article)
+        try:
+            categorized_article = categorize_article(article)
+            categorized.append(categorized_article)
+        except Exception as e:
+            # If categorization fails, just add the original article
+            if "categories" not in article:
+                article["categories"] = [article.get("feed_category", "General")]
+            categorized.append(article)
+    
     return categorized
